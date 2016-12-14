@@ -56,8 +56,19 @@ Engine.prototype.makeStageClickable = function() {
 	this.clickLayer.touchstart = this.clickLayer.mousedown = this.buttonPressed.bind(this);
 }
 
+Engine.prototype.randomizePlayer = function() {
+    this.removeSprite(player.sprite);
+    var number = Math.floor((Math.random() * Settings.PLAYER_COUNT) + 1); 
+	var newTexture = PIXI.Texture.fromImage("res/players/player" + number + ".png");
+	player.sprite = new PIXI.Sprite(newTexture);
+    this.unitsContainer.addChild(player.sprite);
+}
+
 Engine.prototype.activateMenu = function() {
 	this.state = MENU;
+
+    this.randomizePlayer();
+
 	player.score = 0
 	console.log("changed to menu!");
 	logo1.sprite.visible = true;
@@ -95,6 +106,10 @@ Engine.prototype.activateGameOver = function() {
 	gameOverText.visible = true;
 	scoreBg.visible = true;
 	this.sound.play("explosion")
+}
+
+Engine.prototype.removeSprite = function(sprite) {
+	this.unitsContainer.removeChild(sprite);
 }
 
 Engine.prototype.removeIntegral = function(integral) {
@@ -197,6 +212,7 @@ Engine.prototype.buttonPressed = function() {
 Engine.prototype.setupGameObjects = function() {
 	// add player to gameobjectlist
 	this.gameObjectList = [];
+
 
 	this.unitsContainer.addChild(player.sprite);
 	this.menuContainer.addChild(logo1.sprite);

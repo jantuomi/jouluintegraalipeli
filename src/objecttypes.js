@@ -53,15 +53,15 @@ scoreBg.beginFill(0xAAAAAA, 1.0);
 scoreBg.visible = false;
 
 // score display
-var scoreText = new PIXI.Text("W", { font: '35px Arial', fill: 'black', align: 'left' });
+var scoreText = new PIXI.Text("W", { font: '35px Arial', fill: 'white', align: 'left' });
 scoreText.visible = false;
 scoreText.update = function() {
-	this.text = "W = " + player.score + " J";
+	this.text = "Tomia vältelty " + player.score + " tuntia";
 }
 
 scoreText.moveToCorner = function() {
-	this.position.x = Settings.STAGE_WIDTH * 0.7;
-	this.position.y = Settings.STAGE_HEIGHT * 0.1;
+	this.position.x = Settings.STAGE_WIDTH * 0.5;
+	this.position.y = Settings.STAGE_HEIGHT * 0.05;
 }
 
 scoreText.moveToCenter = function() {
@@ -71,14 +71,14 @@ scoreText.moveToCenter = function() {
 scoreText.moveToCorner();
 
 // gameover screen title text
-var gameOverText = new PIXI.Text("Nettovoiman tekemä työ:", { font: '35px Arial', fill: 'black', align: 'center' });
+var gameOverText = new PIXI.Text("Onneksi olkoon!", { font: '35px Arial', fill: 'black', align: 'center' });
 gameOverText.visible = false;
 gameOverText.position.x = Settings.STAGE_WIDTH * 0.5 - gameOverText.width / 2;;
 gameOverText.position.y = Settings.STAGE_HEIGHT * 0.4 - gameOverText.height / 2;;
 
 // move the gameover bg box now that we now the width of the text
 var yDiff = scoreText.position.y - gameOverText.position.y + gameOverText.height;
-scoreBg.drawRect(gameOverText.position.x - 10, gameOverText.position.y - 10, gameOverText.width + 20, -yDiff);
+scoreBg.drawRect(Settings.STAGE_WIDTH * 0.2, gameOverText.position.y - 10, Settings.STAGE_WIDTH * 0.6, -yDiff);
 
 // integral sign
 function Integral(y) {

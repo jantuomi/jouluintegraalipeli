@@ -64,4 +64,9 @@ Player.prototype.update = function() {
 	}
 }
 
-var player = new Player("player");
+Player.prototype.updateSprite = function(sprite) {
+    this.sprite = sprite;
+}
+
+var number = Math.floor((Math.random() * Settings.PLAYER_COUNT) + 1); 
+var player = new Player("players/player" + number);

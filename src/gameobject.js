@@ -1,10 +1,14 @@
 function GameObject(texture) {
-	this.texture = PIXI.Texture.fromImage("res/" + texture + ".png");
-	this.sprite = new PIXI.Sprite(this.texture);
+    this.updateTexture(texture);
 
 	this.initPosition();
 	this.active = true;
 	this.objectType = "gameobject";
+}
+
+GameObject.prototype.updateTexture = function(name) {
+	this.texture = PIXI.Texture.fromImage("res/" + name + ".png");
+	this.sprite = new PIXI.Sprite(this.texture);
 }
 
 GameObject.prototype.initPosition = function() {
