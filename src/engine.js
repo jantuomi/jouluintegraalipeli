@@ -133,7 +133,7 @@ Engine.prototype.testForGameover = function() {
 
 			var xdist = obj.position.x - p.position.x;
 
-			if (xdist > -0.3 * obj.width && xdist < 0.2 * obj.width) {
+			if (xdist > -obj.width * 0.8 && xdist < obj.width * 0.1) {
 				var ydist = obj.position.y - p.position.y;
 			
 				if (ydist > -obj.height / 2 && ydist < obj.height / 2) {
@@ -166,16 +166,21 @@ Engine.prototype.update = function() {
 
 	if (this.state == GAME || this.state == MENU) {
 		this.testForGameover();
+        var toBeRemoved = -1;
 		for (var i = 0; i < this.gameObjectList.length; i++) {
 			var obj = this.gameObjectList[i];
 			obj.update();
 
 			// check if integral object has left the screen
 			if (obj.objectType == "integral") {
-				if (obj.sprite.x < -obj.sprite.width)
-					this.removeIntegral(obj);
+				if (obj.sprite.x < -obj.sprite.width) {
+                    toBeRemoved = i;
+                }
 			}
 		}
+        if (toBeRemoved != -1) {
+            this.removeIntegral(this.gameObjectList[toBeRemoved]);
+        }
 	}
 
 	if (this.state == GAMEOVER) {

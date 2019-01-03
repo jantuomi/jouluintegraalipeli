@@ -6,8 +6,7 @@ function Background(x_offset) {
 
 	this.x_speed = 10
 	this.objectType = "background";
-}
-
+} 
 Background.prototype = Object.create(GameObject.prototype);
 Background.prototype.constructor = Background;
 
