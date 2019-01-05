@@ -1,0 +1,6 @@
+version: '3.2'
+services:
+    jouluintegraalipeli:
+        image: registry.jan.systems/jouluintegraalipeli
+        ports:
+            - 8003:80

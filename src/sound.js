@@ -1,7 +1,7 @@
 var Sound = function() {
 	// start music
 	this.bgMusic = new Howl({
-		urls: ['res/bg.mp3'],
+		urls: ['/res/bg.mp3'],
 		autoplay: true,
 		loop: true,
 		volume: 1,
