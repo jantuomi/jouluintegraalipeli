@@ -1,2 +1,2 @@
-FROM nginx
-COPY . /etc/share/nginx/html
+FROM fnichol/uhttpd
+COPY . /www
